@@ -5,6 +5,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    
 }
 
 :root{
@@ -32,6 +33,93 @@ ul{
     margin: 0;
     padding: 0;
 }
+/* start combonenet */
+.main-title {
+    border: 2px solid;
+    padding: 10px 20px;
+    font-size: 30px;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+
+
+.main-title::before, .main-title::after {
+    content: "";
+    background-color: var(--main-color);
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+
+}
+
+.main-title::before {
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+}
+
+.main-title::after {
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+}
+
+.main-title:hover {
+    animation: convert 0.1s linear forwards 0.4s;
+}
+
+@keyframes convert {
+    100% {
+        border-color: transparent;
+        color: white;
+    }
+}
+
+.main-title:hover::before {
+    animation: left-move 0.5s linear forwards;
+}
+
+.main-title:hover::after {
+    animation: right-move 0.5s linear forwards;
+}
+
+@keyframes left-move {
+    50% {
+        left: 0;
+        width: 12px;
+        height: 12px;
+    }
+
+    100% {
+        left: 0;
+        border-radius: 0;
+        width: 50%;
+        height: 100%;
+    }
+}
+
+@keyframes right-move {
+    50% {
+        right: 0;
+        width: 12px;
+        height: 12px;
+    }
+
+    100% {
+        right: 0;
+        border-radius: 0;
+        width: 50%;
+        height: 100%;
+    }
+}
+
+/* End combonenet */
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -84,13 +172,13 @@ align-items: center;
 }
 .header .container .nav ul{
     display: flex;
-    gap: 30px;
-
+    justify-content: space-between;
 }
 
 
 @media (max-width: 767px) {
     .header .container {
+        display: flex;
         flex-direction: column; /* بيجيب اللوجو فوق والـ Links تحته */
         width: 100%;            /* بيجبر الـ container يملى الشاشة */
         justify-content: center;
@@ -106,10 +194,10 @@ align-items: center;
     }
  
 
-    .header .main-nav  a {
-        padding: 0 ;        /* تقليل المسافات الجانبية عشان الكلام ما ينزلش سطر جديد */
-        font-size: 8px;        /* تصغير الخط حاجة بسيطة ليناسب الموبايل */
-        height: 40px;           /* تقليل الارتفاع */
+    .header .container .nav  li  a {
+        padding: 0 20px ;    
+        font-size: 14px;        
+        height: 50px;          
     }
 }
 
@@ -117,7 +205,7 @@ align-items: center;
 .header .nav li a{
     color: black;
     font-size: 18px;
-    padding: 0 15px;
+    padding: 0 25px;
     height: 70px;
     flex-wrap: wrap;
     display: flex;
@@ -135,7 +223,6 @@ align-items: center;
     background-color: var(--main-color);
     top: 0;
     left: -100%; 
-    
     transition: 0.4s;
   }
   
@@ -181,7 +268,7 @@ align-items: center;
 .landing .container{
     display: flex;
     padding-bottom: 140px;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 .landing .container .text{
@@ -215,6 +302,10 @@ align-items: center;
 
 .landing .text{
     text-align: center;
+}
+
+.landing .container .text p{
+    margin: auto;
 }
 .landing .container .image img{
    display: none;
@@ -329,15 +420,7 @@ padding-left: 15px;
 
 
 
-.gallry .main-title{
-    border: 2px solid;
-    width: fit-content;
-    position: relative;
-    margin: 0 auto;
-    padding: 10px 20px;
-    text-transform: uppercase;
 
-}
 .gallry {
     background-color: #eceff1 ; /* اللون الرمادي بتاع التكليف */
     padding-top: 60px; /* مسافة عشان العنوان ينزل تحت الزجزاج وما يتغطاش */
@@ -346,6 +429,10 @@ padding-left: 15px;
     position: relative;
     padding-bottom: var(--main-padding-bottom);
     padding-top: var(--main-padding-top);
+}
+
+.gallry .main-title {
+    z-index: 1; /* لضمان ظهور العنوان والدوائر فوق الخلفية */
 }
 .gallry .container{
     display: grid;
@@ -363,3 +450,137 @@ padding-left: 15px;
     max-width: 100%;
 }
 /* end gallry */
+
+
+
+/* Start Features */
+
+.Features{
+padding-top: var(--main-padding-top);
+padding-bottom: var(--main-padding-bottom);
+}
+
+
+
+.Features .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    padding-top: 60px;
+    
+}
+.Features .container .box .image img{
+    max-width: 100%;
+}
+
+.Features .container .box{
+    text-align: center;
+}
+
+.Features .container .box .text {
+    padding: 20px 30px;
+}
+.Features .container .box .text h1{
+    font-size: 35px;
+    position: relative;
+}
+
+.Features .container .box .text p{
+    padding: 25px 10px;
+    font-size: 18px;
+    color: #777;
+}
+.Features .container .box .foot a {
+ padding: 5px 35px;
+border-radius: 5px;
+font-weight: bold;
+}
+.Features .container .box:nth-child(1) .foot a {
+    color: rgb(244 64 54);
+    border: 3px solid rgb(244, 64, 54);
+}
+
+.Features .container .box:nth-child(2) .foot a {
+    color: rgb(0 150 136);
+    border: 3px solid rgb(0 150 136);
+}
+
+
+.Features .container .box:nth-child(3) .foot a{
+    color: var(--main-color);
+    border: 3px solid var(--main-color);
+    font-size: 18px;
+}
+
+
+
+/* end features */
+
+
+/* Start Testimonials */
+.Testimonials{
+    position: relative;
+    padding-top: var(--main-padding-top);
+    padding-bottom: var(--main-padding-bottom);
+}
+.Testimonials::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+
+}
+
+.Testimonials .main-title {
+    z-index: 1; /* لضمان ظهور العنوان والدوائر فوق الخلفية */
+}
+
+.Testimonials .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    padding-top: 80px;
+}
+.Testimonials .container .box{
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+}
+.Testimonials .container .box img{
+    position: absolute;
+    top: -50px;
+    right: -15px;
+    width: 100px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #ddd;
+} 
+.Testimonials .container .box   h1{
+    margin: 0;
+    text-transform: capitalize;
+    font-size: 20px;
+    margin-bottom: 5px;
+} 
+.Testimonials .container .box  .text span{
+color: #777;
+} 
+.Testimonials .container .box   p{
+    color: #777;
+    margin-top: 10px;
+} 
+    
+
+.Testimonials .container .box  .star {
+    margin-top: 10px;
+} 
+    
+
+.fa-star{
+    font-weight: 900;
+}
+/* end Testimonials */
